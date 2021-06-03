@@ -1,0 +1,14 @@
+@mixin transition($property) { transition: all $property; -webkit-transition: all $property; -moz-transition: all $property; }
+#cookie__banner {
+    .btn {
+        &:hover, &:active, &:focus { outline: none !important; box-shadow: none !important; }
+    }
+    .group-btn { text-decoration: none !important; }
+    .cookie-link { padding:0; }
+    #cookielinks__end {
+        .cookie-link { margin-left:1rem; }
+    }
+}
+#cookie__revoke { position:fixed; right:0; bottom:0; border:0; background:rgba(0,0,0,0.1); color:#000; font-size:0.7rem; padding: 0.25rem; padding-left: 0.5rem; padding-right: 0.5rem; @include transition(0.2s);
+    &:hover { padding-bottom:0.5rem; }
+}

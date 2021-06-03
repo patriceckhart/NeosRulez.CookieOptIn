@@ -1,0 +1,9 @@
+-
+  name: 'cookie json'
+  uriPattern: '{lang}.cookie.json'
+  defaults:
+    '@controller': 'Metadata'
+    '@package': 'NeosRulez.CookieOptIn'
+    '@action': 'metadata'
+    '@format': 'json'
+  appendExceedingArguments: true

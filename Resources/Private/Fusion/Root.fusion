@@ -1,0 +1,22 @@
+prototype(Neos.Neos:Page) {
+    @context.hideCookieBanner = ${documentNode.properties.hide_modal}
+    head {
+        neosRulezCookieOptInCss = Neos.Fusion:Tag {
+            tagName = 'link'
+            attributes.rel = 'stylesheet'
+            attributes.href = Neos.Fusion:ResourceUri {
+                path = 'resource://NeosRulez.CookieOptIn/Public/Styles/styles.min.css'
+            }
+            @if.condition = ${documentNode.context.inBackend ? false : true}
+        }
+    }
+    neosRulezCookieOptInJs = Neos.Fusion:Tag {
+        tagName = 'script'
+        attributes.type = 'text/javascript'
+        attributes.src = Neos.Fusion:ResourceUri {
+            path = 'resource://NeosRulez.CookieOptIn/Public/JavaScript/cookie.min.js'
+        }
+        @position = 'end'
+        @if.condition = ${documentNode.context.inBackend || hideCookieBanner ? false : true}
+    }
+}

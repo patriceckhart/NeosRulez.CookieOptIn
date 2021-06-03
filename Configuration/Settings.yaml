@@ -1,0 +1,18 @@
+Neos:
+  Flow:
+    mvc:
+      routes:
+        'NeosRulez.CookieOptIn': true
+  Neos:
+    fusion:
+      autoInclude:
+        NeosRulez.CookieOptIn: true
+    userInterface:
+      translation:
+        autoInclude:
+          NeosRulez.CookieOptIn:
+            - 'Component/*'
+            - 'NodeTypes/*'
+NeosRulez:
+  CookieOptIn:
+    cookieMetadata: 'resource://NeosRulez.CookieOptIn/Private/Metadata/'
