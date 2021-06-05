@@ -25,7 +25,6 @@ let slideUp = (target, duration=500) => {
         target.style.removeProperty('overflow');
         target.style.removeProperty('transition-duration');
         target.style.removeProperty('transition-property');
-        //alert("!");
     }, duration);
 }
 
@@ -68,9 +67,9 @@ var slideToggle = (target, duration = 500) => {
     }
 }
 
-var cookieBannerHtml = '<div id="cookie__banner" style="position:fixed;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,0.8);z-index:9999;overflow:scroll;overflow-x:hidden">\n' +
+var cookieBannerLayout1 = '<div id="cookie__banner" class="cookie-banner-layout-1" style="position:fixed;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,0.8);z-index:9999;overflow:scroll;overflow-x:hidden">\n' +
     '    <div class="row h-100 align-items-center">\n' +
-    '        <div class="col-md-7 mx-auto">\n' +
+    '        <div class="col-md-6 mx-auto">\n' +
     '            <div class="cookie-banner" style="background:#FFF;padding:1rem;margin:1rem">\n' +
     '                <h3 id="banner__header"></h3>\n' +
     '                <p id="banner__text"></p>\n' +
@@ -91,9 +90,35 @@ var cookieBannerHtml = '<div id="cookie__banner" style="position:fixed;width:100
     '    </div>\n' +
     '</div>';
 
-var cookieRevokeHtml = '<button id="cookie__revoke">\n' +
-    '    🍪 Cookie-Einstellungen\n' +
-    '</button>';
+var cookieBannerLayout2 = '<div id="cookie__banner" class="cookie-banner-layout-2" style="position:fixed;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,0.8);z-index:9999;overflow:scroll;overflow-x:hidden">\n' +
+    '            <div class="row h-100 align-items-end">\n' +
+    '                <div class="col-md-11 mx-auto">\n' +
+    '                    <div class="cookie-banner" style="background:#FFF;padding:1rem;margin:1rem">\n' +
+    '                        <div class="row">\n' +
+    '                            <div class="col-md-6">\n' +
+    '                                <h3 id="banner__header"></h3>\n' +
+    '                                <p id="banner__text"></p>\n' +
+    '                                <div id="cookie__buttons">\n' +
+    '                                    <div class="row"></div>\n' +
+    '                                </div>\n' +
+    '                                <div class="row">\n' +
+    '                                    <div class="col-md-6">\n' +
+    '                                        <div id="cookielinks__start"></div>\n' +
+    '                                    </div>\n' +
+    '                                    <div class="col-md-6">\n' +
+    '                                        <div id="cookielinks__end" style="text-align:right"></div>\n' +
+    '                                    </div>\n' +
+    '                                </div>\n' +
+    '                            </div>\n' +
+    '                            <div class="col-md-6">\n' +
+    '                                <div id="cookie__groups"></div>\n' +
+    '                                <div id="additional__text" style="font-size:0.8rem"></div>\n' +
+    '                            </div>\n' +
+    '                        </div>\n' +
+    '                    </div>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '        </div>';
 
 function nowPlusOneYear() {
     var oneYearFromNow = new Date();
@@ -158,32 +183,50 @@ function processCookieDependentResources() {
             cookieWorker(a[i], `${cookieValue}`);
         }
     }
+}
 
+function writeCookieRevokeButton() {
+    fetch(document.documentElement.lang + '.cookie.json')
+        .then(response => response.json())
+        .then(json => {
+            document.body.innerHTML += '<button id="cookie__revoke">' + json.settings.label + '</button>';
+            var cookieRevoker = document.getElementById('cookie__revoke');
+            if (cookieRevoker !== null) {
+                document.getElementById('cookie__revoke').addEventListener('click', (e) => {
+                    setCookie('_cs', 'revoked', nowPlusOneYear());
+                    location.reload();
+                });
+            }
+        });
 }
 
 if(!getCookie('_cs') || getCookie('_cs') == 'revoked') {
-    document.write(cookieBannerHtml);
+    ready(() => {
+        writeCookieBanner();
+    });
 } else {
-    document.write(cookieRevokeHtml);
+    writeCookieRevokeButton();
     processCookieDependentResources();
 }
 
-var cookieRevoker = document.getElementById('cookie__revoke');
-if (cookieRevoker !== null) {
-    document.getElementById('cookie__revoke').addEventListener('click', (e) => {
-        setCookie('_cs', 'revoked', nowPlusOneYear());
-        location.reload();
-    });
-}
-
-ready(() => {
+function writeCookieBanner() {
     async function fetchCookieMetadataAsync() {
         var lang = document.documentElement.lang;
         var fetchFile = lang + '.cookie.json';
         const response = await fetch(fetchFile);
         var metadata = await response.json();
+        if(metadata.layout == 'classic') {
+            document.body.innerHTML += cookieBannerLayout1;
+        }
+        if(metadata.layout == 'wide') {
+            document.body.innerHTML += cookieBannerLayout2;
+        }
         document.getElementById('banner__header').innerText = metadata.header;
         document.getElementById('banner__text').innerText = metadata.text;
+        var additionalText = document.getElementById('additional__text');
+        if (additionalText !== null) {
+            document.getElementById('additional__text').innerText = metadata.additionalText;
+        }
         var cookieButtons = document.getElementById('cookie__buttons').querySelector('.row');
         var cookieLinksStart = document.getElementById('cookielinks__start');
         var cookieLinksEnd = document.getElementById('cookielinks__end');
@@ -191,11 +234,18 @@ ready(() => {
         for (var button in metadata.buttons) {
             if(button != 'selected') {
                 var newCookieButtonCol = document.createElement('div');
-                newCookieButtonCol.className = 'col-md-6';
+                var buttonMargin = 'my-3'
+                if(metadata.layout == 'classic') {
+                    newCookieButtonCol.className = 'col-md-6';
+                }
+                if(metadata.layout == 'wide') {
+                    newCookieButtonCol.className = 'col-12';
+                    buttonMargin = 'my-2';
+                }
                 var newCookieButton = document.createElement('button');
-                var className = 'btn btn-primary w-100 my-3 cookie-button';
+                var className = 'btn btn-primary w-100 ' + buttonMargin + ' cookie-button';
                 if (button == 'essential') {
-                    className = 'btn btn-outline-primary w-100 my-3 cookie-button';
+                    className = 'btn btn-outline-primary w-100 ' + buttonMargin + ' cookie-button';
                 }
                 newCookieButton.className = className;
                 newCookieButton.setAttribute('id', 'button__' + button);
@@ -312,15 +362,18 @@ ready(() => {
 
         document.getElementById('button__all').addEventListener('click', (e) => {
             setEssentialCookie('all');
+            writeCookieRevokeButton();
         });
 
         document.getElementById('button__essential').addEventListener('click', (e) => {
             setEssentialCookie('essential');
+            writeCookieRevokeButton();
         });
 
         document.getElementById('button__selected').addEventListener('click', (e) => {;
             var cookieString = selectedCookieGroups.join(',');
             setEssentialCookie(cookieString);
+            writeCookieRevokeButton();
         });
 
         document.querySelectorAll('.group-btn').forEach(item => {
@@ -335,5 +388,6 @@ ready(() => {
     if(!getCookie('_cs') || getCookie('_cs') == 'revoked') {
         fetchCookieMetadataAsync();
     }
+}
 
-});
+

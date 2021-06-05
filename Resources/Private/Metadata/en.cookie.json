@@ -1,6 +1,7 @@
 {
-    "header": "We use cookies \uD83C\uDF6A",
+    "header": "We use cookies",
     "text": "We use cookies on our website. Some of them are essential, while others help us to improve this website and your experience.",
+    "additionalText": "We generally process personal data on the basis of your consent. You can change your decision at any time by clicking the \"Cookie Settings\" button in our privacy policy. If we process personal data on the basis of a legitimate interest, your consent is not required. You can object to use by changing the settings here.",
     "buttons": {
         "essential": {
             "label": "Only essentials"
@@ -22,6 +23,10 @@
             "href": "dataprivacylink"
         }
     },
+    "settings": {
+        "label": "Cookie-Settings"
+    },
+    "layout": "classic",
     "cookiegroups": {
         "essential": {
             "label": "Essential",

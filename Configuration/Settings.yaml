@@ -16,3 +16,5 @@ Neos:
 NeosRulez:
   CookieOptIn:
     cookieMetadata: 'resource://NeosRulez.CookieOptIn/Private/Metadata/'
+    layout: 'classic'
+#    layout: 'wide'

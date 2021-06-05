@@ -71,6 +71,7 @@ class MetadataController extends ActionController
                 $result['links']['dataprivacy']['href'] = $sites['dataprivacy']['uri'];
             }
         }
+        $result['layout'] = $this->settings['layout'];
         $this->response->setStatusCode(200);
         $this->view->assign('value', $result);
 

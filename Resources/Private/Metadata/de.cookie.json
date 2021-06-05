@@ -1,6 +1,7 @@
 {
-    "header": "Wir verwenden Cookies \uD83C\uDF6A",
+    "header": "Wir verwenden Cookies",
     "text": "Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern.",
+    "additionalText": "Wir verarbeiten personenbezogene Daten grundsätzlich auf Grundlage Ihrer Einwilligung. Ihre Entscheidung können Sie jederzeit ändern, indem Sie auf die Schaltfläche \"Cookie-Einstellungen\" in unserer Datenschutzerklärung klicken. Soweit wir personenbezogene Daten auf Grundlage eines berechtigten Interesses verarbeiten, ist Ihre Einwilligung nicht erforderlich. Sie können einer Nutzung durch eine Änderung der Einstellungen hier widersprechen.",
     "buttons": {
         "essential": {
             "label": "Nur Essenzielle"
@@ -22,6 +23,10 @@
             "href": "dataprivacylink"
         }
     },
+    "settings": {
+        "label": "Cookie-Einstellungen"
+    },
+    "layout": "classic",
     "cookiegroups": {
         "essential": {
             "label": "Essenziell",
