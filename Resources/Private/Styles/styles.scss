@@ -8,6 +8,7 @@
     #cookielinks__end {
         .cookie-link { margin-left:1rem; }
     }
+    .form-check-input { float:right; }
 }
 #cookie__revoke { position:fixed; right:0; bottom:0; border:0; background:rgba(0,0,0,0.1); color:#000; font-size:0.7rem; padding: 0.25rem; padding-left: 0.5rem; padding-right: 0.5rem; @include transition(0.2s);
     &:hover { padding-bottom:0.5rem; }

@@ -186,7 +186,7 @@ function processCookieDependentResources() {
 }
 
 function writeCookieRevokeButton() {
-    fetch(document.documentElement.lang + '.cookie.json')
+    fetch('/' + document.documentElement.lang + '.cookie.json')
         .then(response => response.json())
         .then(json => {
             document.body.innerHTML += '<button id="cookie__revoke">' + json.settings.label + '</button>';
@@ -212,7 +212,7 @@ if(!getCookie('_cs') || getCookie('_cs') == 'revoked') {
 function writeCookieBanner() {
     async function fetchCookieMetadataAsync() {
         var lang = document.documentElement.lang;
-        var fetchFile = lang + '.cookie.json';
+        var fetchFile = '/' + lang + '.cookie.json';
         const response = await fetch(fetchFile);
         var metadata = await response.json();
         if(metadata.layout == 'classic') {
