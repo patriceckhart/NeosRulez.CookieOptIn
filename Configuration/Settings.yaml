@@ -1,0 +1,18 @@
+Neos:
+  Flow:
+    mvc:
+      routes:
+        'NeosRulez.CookieOptIn': true
+  Neos:
+    fusion:
+      autoInclude:
+        NeosRulez.CookieOptIn: true
+    userInterface:
+      translation:
+        autoInclude:
+          NeosRulez.CookieOptIn:
+            - 'NodeTypes/*'
+NeosRulez:
+  CookieOptIn:
+    metadataPathAndFilename: 'resource://NeosRulez.CookieOptIn/Private/Metadata/{lang}.cookie.json'
+    bannerDelayTime: 2000

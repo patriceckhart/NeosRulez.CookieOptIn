@@ -1,0 +1,9 @@
+-
+  name: 'cookie json'
+  uriPattern: '{language}.cookie.json'
+  defaults:
+    '@controller': 'Api'
+    '@package': 'NeosRulez.CookieOptIn'
+    '@action': 'index'
+    '@format': 'json'
+  appendExceedingArguments: true

@@ -1,0 +1,10 @@
+privilegeTargets:
+  Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+    'NeosRulez.CookieOptIn:ApiControllerActions':
+      matcher: 'method(NeosRulez\CookieOptIn\Controller\ApiController->.*Action())'
+roles:
+  'Neos.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'NeosRulez.CookieOptIn:ApiControllerActions'
+        permission: GRANT

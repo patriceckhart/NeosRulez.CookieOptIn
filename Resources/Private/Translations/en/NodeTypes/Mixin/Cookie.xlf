@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="NeosRulez.CookieOptIn" source-language="en" datatype="plaintext">
+        <body>
+            <trans-unit id="tabs.neosrulezCookieOptIn" xml:space="preserve">
+				<source>Cookie-Settings</source>
+			</trans-unit>
+            <trans-unit id="groups.neosrulezCookieOptInModalSettings" xml:space="preserve">
+				<source>Behavior of the cookie banner</source>
+			</trans-unit>
+            <trans-unit id="properties.hide_modal" xml:space="preserve">
+				<source>Hide cookie banner</source>
+			</trans-unit>
+            <trans-unit id="properties.is_imprint" xml:space="preserve">
+				<source>Page is imprint</source>
+			</trans-unit>
+            <trans-unit id="properties.is_privacy" xml:space="preserve">
+				<source>Page is privacy policy</source>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>

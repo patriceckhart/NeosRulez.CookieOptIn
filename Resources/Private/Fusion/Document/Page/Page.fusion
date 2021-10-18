@@ -1,0 +1,34 @@
+prototype(Neos.Neos:Page) {
+
+    head {
+        neosrulezCookieOptInHeadStyles = Neos.Fusion:Component {
+            @position = 'end'
+            renderer = afx`
+                <Neos.Fusion:Tag tagName="link" attributes.rel="stylesheet" @children="attributes.href">
+                    <Neos.Fusion:ResourceUri path="resource://NeosRulez.CookieOptIn/Public/Styles/styles.min.css" />
+                </Neos.Fusion:Tag>
+            `
+            @if.condition = ${!site.context.inBackend}
+        }
+    }
+
+    neosrulezCookieOptInFooterScript = Neos.Fusion:Tag {
+        @position = 'after neosrulezCookieOptInWrapper'
+
+        tagName = 'script'
+        attributes.src = Neos.Fusion:ResourceUri {
+            path = 'resource://NeosRulez.CookieOptIn/Public/JavaScript/cookie.min.js'
+        }
+        @if.render = ${!site.context.inBackend && !documentNode.properties.hide_modal}
+    }
+
+    neosrulezCookieOptInWrapper = Neos.Fusion:Component {
+        @position = 'end'
+
+        renderer = afx`
+            <div id="cb"></div>
+        `
+        @if.render = ${!site.context.inBackend}
+    }
+
+}

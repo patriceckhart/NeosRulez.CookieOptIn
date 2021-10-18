@@ -1,0 +1,46 @@
+'NeosRulez.CookieOptIn:Mixin.Cookie':
+  abstract: true
+  ui:
+    inspector:
+      tabs:
+        neosrulezCookieOptIn:
+          label: i18n
+          position: 9999
+          icon: fas fa-cookie-bite
+      groups:
+        neosrulezCookieOptInModalSettings:
+          label: i18n
+          icon: fas fa-cookie-bite
+          tab: neosrulezCookieOptIn
+          position: 15
+          collapsed: false
+  properties:
+    is_imprint:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        inspector:
+          hidden: 'ClientEval:node.properties.is_privacy ? true : false'
+          group: neosrulezCookieOptInModalSettings
+          position: 20
+    is_privacy:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        inspector:
+          hidden: 'ClientEval:node.properties.is_imprint ? true : false'
+          group: neosrulezCookieOptInModalSettings
+          position: 30
+    hide_modal:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        inspector:
+          group: neosrulezCookieOptInModalSettings
+          position: 40

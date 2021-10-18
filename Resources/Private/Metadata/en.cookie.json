@@ -1,0 +1,55 @@
+{
+    "header": "We use Cookies",
+    "text": "We use cookies on our website. Some of them are essential, while others help us to improve this website and your experience.",
+    "additionalHeader": "Cookie Settings",
+    "settings": {
+        "bannerDelayTime": "{bannerDelayTime}"
+    },
+    "buttons": {
+        "settings": {
+            "label": "Settings",
+            "additionalLabelText": "Save Settings"
+        },
+        "confirm": {
+            "label": "OK - accept all"
+        }
+    },
+    "links": {
+        "legalnotice": {
+            "label": "{legalnoticelabel}",
+            "href": "{legalnoticelink}"
+        },
+        "dataprivacy": {
+            "label": "{dataprivacylabel}",
+            "href": "{dataprivacylink}"
+        }
+    },
+    "groups": {
+        "essential": {
+            "label": "Essential",
+            "cookies": {
+                "_cs": {
+                    "description": "This cookie must be set in order to call up your cookie settings and to either prohibit or allow cookies.",
+                    "lifetime": "1 year"
+                }
+            }
+        },
+        "analysis": {
+            "label": "Analysis & performance",
+            "cookies": {
+                "_ga": {
+                    "description": "This cookie is installed by Google Analytics. This cookie is used to calculate visitor, session and campaign data and to track website usage for the website analysis report. The cookies store information anonymously and assign a randomly generated number to identify unique visitors.",
+                    "lifetime": "2 years"
+                },
+                "_gid": {
+                    "description": "This cookie is installed by Google Analytics. This cookie is used to store information about how visitors use a website and helps to create an analytical report on how the website is working. The data collected, including the number of visitors, the source they came from and the pages that are viewed anonymously.",
+                    "lifetime": "1 day"
+                },
+                "_gat": {
+                    "description": "This cookie is installed by Google Universal Analytics to throttle the request rate and limit data collection on websites with high traffic.",
+                    "lifetime": "1 minute"
+                }
+            }
+        }
+    }
+}

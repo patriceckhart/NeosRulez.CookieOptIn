@@ -1,0 +1,137 @@
+@mixin transition($property) { transition: all $property; -webkit-transition: all $property; -moz-transition: all $property; }
+
+$cbBackground: #333333;
+$cbCookieSvgFill: #FFFFFF;
+$cbTextColor: #FFFFFF;
+$cbLinkColor: #FFFFFF;
+$cbButtonSettingsColor: #666;
+$cbButtonSettingsHoverColor: #555;
+$cbButtonOKColor: #9dbb3c;
+$cbButtonOKHoverColor: #7f9830;
+$cbButtonOKSvgFill: #FFF;
+
+$cbSettingsHeaderTextColor: #FFF;
+$cbSettingsBodyBackgroundColor: #FFF;
+
+$cbTogglerColor: #FFF;
+$cbTogglerBorderColor: #ebebeb;
+
+$cbRevokeButtonColor: rgba(0,0,0,0.6);
+$cbRevokeButtonSvgColor: #FFF;
+
+#cb { opacity:0; @include transition(0.2s);
+    .cookie-Banner--Wrapper, .cookie-Settings--Wrapper { position: fixed; width:100%; left:0; bottom:0; z-index:1; padding-left:1rem; padding-right:1rem;
+        .cookie-Banner, .cookie-Settings { width:100%; max-width:1200px; margin:0 auto; display:block; background:$cbBackground; padding:1.2rem; margin-bottom:2rem;
+            .cookie-Banner--Row { display:flex; width:100%; }
+            .cookie-Banner--Row--Column { display:flex; flex-direction: column; padding:1rem; align-self: center; }
+            .cookie-Banner--Row--Column-1, .cookie-Banner--Row--Column-2, .cookie-Banner--Row--Column-3 { @extend .cookie-Banner--Row--Column; }
+            .cookie-Banner--Row--Column-1 { width:10%; text-align:center;
+                svg { width:100%; max-width:3rem; margin:0 auto;
+                    path { fill: $cbCookieSvgFill; }
+                }
+            }
+            .cookie-Banner--Row--Column-2 { width:50%;
+                .text { color:$cbTextColor;
+                    .text--Header { font-size:1.6rem; display:block; margin-bottom:0.5rem; }
+                    .text--P { display:block; }
+                    .text--Links { display:block; margin-top:0.5rem;
+                        .text--Links-Privacy, .text--Links-Imprint { display:inline-block; color:$cbLinkColor; text-decoration: underline;
+                            &:hover { text-decoration: none; }
+                        }
+                        .text--Links-Privacy { margin-right:1rem; }
+                    }
+                }
+            }
+            .cookie-Banner--Row--Column-3 { width:40%; }
+            .cookie-Banner--Button { height:50px; font-weight:bold; color:#FFF; border:0; outline:0; padding:0.5rem; margin-top:0.5rem; margin-bottom:0.5rem; @include transition(0.2s); }
+            #cookie_Banner__Button__Settings, #cookie_Banner__Button__Settings__OK { background:$cbButtonSettingsColor;
+                &:hover { background:$cbButtonSettingsHoverColor; }
+            }
+            #cookie_Banner__Button__OK { background:$cbButtonOKColor;
+                svg { display:inline; width:1.4rem; margin-left:1rem; @include transition(0.2s);
+                    path { fill: $cbButtonOKSvgFill; }
+                }
+                &:hover {
+                    background: $cbButtonOKHoverColor;
+                    svg { margin-left: 1.5rem; }
+                }
+            }
+        }
+    }
+    .cookie-Settings--Wrapper { z-index:2; bottom:auto; top:0; height:100%;
+        .cookie-Settings { max-width:860px; height:calc(100% - 6rem); margin-top:3rem; display:flex; flex-direction: column; justify-content: space-between;
+            .cookie-Settings--Header { color:$cbSettingsHeaderTextColor; font-size:1.6rem; text-align:center; margin-bottom:1.3rem; }
+            .cookie-Settings--Body { background:$cbSettingsBodyBackgroundColor; height:100%; padding:1.4rem; overflow:scroll;
+                .cookie-Group { margin-bottom:2rem;
+                    .cookie-Settings--Body--Cookies {
+                        .cookie-Group--Row { display:flex; width:100%; margin-top:1.5rem; margin-bottom:1.5rem;
+                            .cookie-Banner--Row--Column { display:flex; flex-direction: column; padding:0; align-self: start; }
+                            .cookie-Banner--Row--Column-1, .cookie-Banner--Row--Column-2, .cookie-Banner--Row--Column-3 { @extend .cookie-Banner--Row--Column; }
+                            .cookie-Banner--Row--Column-2 { min-width:130px; }
+                            .cookie-Banner--Row--Column-3 { text-align:right; }
+                            .cookie-Banner--Row--Column-1 { padding-right:1rem; min-width:70px;
+                                code { background:$cbBackground; color:$cbTextColor; padding:0.5rem; margin-top:0.3rem; }
+                            }
+                        }
+                    }
+                }
+                .cookie-Settings--Body--Title { display:flex; margin-bottom:1rem;
+                    span { font-size:1.2rem; font-weight:bold; width:calc(100% - 40px); display:flex; flex-direction: column; align-self: center; }
+                    .cookie-Group--Toggle { width:40px; background:$cbTogglerColor; border:0; outline:0; margin:0; padding:0; display:flex; flex-direction: column; align-self: center; position: relative;
+                        .cookie-Group--Toggle--Sprite { width:40px; height:20px; position: relative; z-index:1; border:1px solid $cbTogglerBorderColor; border-radius:20px; @include transition(0.2s); }
+                        .cookie-Group--Toggle--Switch { width:18px; height:18px; margin-top:1px; margin-left:1px; background:#FFF; border-radius:100%; position: absolute; z-index:2; left:0; top:0; box-shadow: 0 2px 3px rgba(0,0,0,0.3); @include transition(0.2s);
+                            &:after { position:absolute; left:0; top:0; content:''; width:6px; height:6px; margin-left:6px; margin-top:6px; background:$cbTogglerBorderColor; border-radius:100%; @include transition(0.2s); }
+                        }
+                        &.toggled {
+                            .cookie-Group--Toggle--Sprite { background:$cbButtonOKColor; border:1px solid $cbButtonOKColor; }
+                            .cookie-Group--Toggle--Switch { margin-left:21px; background:#FFF;
+                                &:after { background:$cbButtonOKColor; }
+                            }
+                        }
+                    }
+                    #cookie_Group__Toggle__essential { pointer-events: none; opacity:0.5; }
+                }
+                .cookie-Settings--Body--Text { display:block; }
+            }
+            .cookie-Settings--Footer {
+                .cookie-Banner--Button { padding-left:1.5rem; padding-right:1.5rem; display:block; margin:0 auto; width:100%; max-width:400px; margin-top:1rem; margin-bottom:1rem; }
+                #cookie_Banner__Button__OK { margin-bottom:0; }
+            }
+        }
+    }
+    &.show { opacity:1; }
+    #cookie_Banner__Revoke { position: fixed; left:0; bottom:0; width:2.5rem; height:2.5rem; outline:0; border:0; padding:0; background:$cbRevokeButtonColor; text-align:center; margin-left:2rem; margin-bottom:-2rem; @include transition(0.2s);
+        svg { width:15px; display:inline-block;
+            path { fill:$cbRevokeButtonSvgColor; }
+        }
+        &:hover { margin-bottom:0; }
+    }
+}
+
+@media (max-width: 992px) {
+    #cb {
+        .cookie-Banner--Wrapper, .cookie-Settings--Wrapper { padding:1rem;
+            .cookie-Banner, .cookie-Settings { margin-bottom:0;
+                .cookie-Banner--Row { display:block;
+                    .cookie-Banner--Row--Column-1 { display:none; }
+                    .cookie-Banner--Row--Column-2 { display:block; width:100%; }
+                    .cookie-Banner--Row--Column-3 { display:block; width:100%;
+                        .cookie-Banner--Button { display:block; width:100%; margin-top:1rem; margin-bottom:1rem; }
+                        #cookie_Banner__Button__OK { margin-bottom:0; }
+                    }
+                }
+            }
+            .cookie-Settings {
+                .cookie-Settings--Body {
+                    .cookie-Group--Row { font-size:0.8rem;
+                        .cookie-Banner--Row--Column {}
+                        .cookie-Banner--Row--Column-1, .cookie-Banner--Row--Column-2, .cookie-Banner--Row--Column-3 { }
+                    }
+                    .cookie-Settings--Body--Title {
+                        span { font-size:1rem; }
+                    }
+                }
+            }
+        }
+    }
+}
