@@ -143,7 +143,8 @@ async function fetchCookieMetadataAsync(delayTime = 2000) {
         const cookieBannerRow = createElement('div', '', 'cookie-Banner--Row', [], '');
 
         const cookieBannerRow1 = createElement('div', '', 'cookie-Banner--Row--Column-1', [], '');
-        const cookieBannerRow2 = createElement('div', '', 'cookie-Banner--Row--Column-2', [], '<div class="text"><span class="text--Header">' + metadata.header + '</span><span class="text--P">' + metadata.text + '</span><div class="text--Links"><a href="' + metadata.links.dataprivacy.href + '" class="text--Links-Privacy">' + metadata.links.dataprivacy.label + '</a><a href="' + metadata.links.legalnotice.href + '" class="text--Links-Imprint">' + metadata.links.legalnotice.label + '</a></div></div>');
+        const cookieBannerLinks = '<div class="text--Links"><a href="' + metadata.links.dataprivacy.href + '" class="text--Links-Privacy">' + metadata.links.dataprivacy.label + '</a><a href="' + metadata.links.legalnotice.href + '" class="text--Links-Imprint">' + metadata.links.legalnotice.label + '</a></div>';
+        const cookieBannerRow2 = createElement('div', '', 'cookie-Banner--Row--Column-2', [], '<div class="text"><span class="text--Header">' + metadata.header + '</span><span class="text--P">' + metadata.text + '</span>' + cookieBannerLinks + '</div>');
         const cookieBannerRow3 = createElement('div', '', 'cookie-Banner--Row--Column-3', [], '');
 
         cookieBannerRow3.append(cookieBannerButtonSettings);
@@ -199,7 +200,6 @@ async function fetchCookieMetadataAsync(delayTime = 2000) {
             });
         });
 
-
         document.getElementById('cookie_Banner__Button__Settings__OK').addEventListener('click', (e) => {
             setCookie('_cs', cookies.join(','), nowPlusOneYear());
             destroyCookieWindows();
@@ -221,6 +221,7 @@ async function fetchCookieMetadataAsync(delayTime = 2000) {
                 createCookieSettings();
             }
         });
+
     }, parseInt(metadata.settings.bannerDelayTime));
 
 }
