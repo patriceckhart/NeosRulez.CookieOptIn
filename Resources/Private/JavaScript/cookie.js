@@ -128,101 +128,105 @@ async function fetchCookieMetadataAsync(delayTime = 2000) {
     const response = await fetch(fetchFile);
     let metadata = await response.json();
 
-    const cookieBanner = document.getElementById('cb');
-    const cookieBannerButtonSettings = createElement('button', 'cookie_Banner__Button__Settings', 'cookie-Banner--Button', [], metadata.buttons.settings.label);
-    const cookieBannerButtonOK = createElement('button', 'cookie_Banner__Button__OK', 'cookie-Banner--Button', [], metadata.buttons.confirm.label + ' <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-right" class="svg-inline--fa fa-long-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M311.03 131.515l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L387.887 239H12c-6.627 0-12 5.373-12 12v10c0 6.627 5.373 12 12 12h375.887l-83.928 83.444c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l116.485-116c4.686-4.686 4.686-12.284 0-16.971L328 131.515c-4.686-4.687-12.284-4.687-16.97 0z"></path></svg>');
+    if(document.getElementById('cb')) {
 
-    function createCookieBanner() {
+        const cookieBanner = document.getElementById('cb');
+        const cookieBannerButtonSettings = createElement('button', 'cookie_Banner__Button__Settings', 'cookie-Banner--Button', [], metadata.buttons.settings.label);
+        const cookieBannerButtonOK = createElement('button', 'cookie_Banner__Button__OK', 'cookie-Banner--Button', [], metadata.buttons.confirm.label + ' <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-right" class="svg-inline--fa fa-long-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M311.03 131.515l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L387.887 239H12c-6.627 0-12 5.373-12 12v10c0 6.627 5.373 12 12 12h375.887l-83.928 83.444c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l116.485-116c4.686-4.686 4.686-12.284 0-16.971L328 131.515c-4.686-4.687-12.284-4.687-16.97 0z"></path></svg>');
 
-        const cookieBannerWrapper = createElement('div', 'cookie_Banner', 'cookie-Banner--Wrapper', [], '');
-        cookieBannerWrapper.append(createElement('div', '', 'cookie-Banner', [], ''));
+        function createCookieBanner() {
 
-        cookieBanner.append(cookieBannerWrapper);
+            const cookieBannerWrapper = createElement('div', 'cookie_Banner', 'cookie-Banner--Wrapper', [], '');
+            cookieBannerWrapper.append(createElement('div', '', 'cookie-Banner', [], ''));
 
-        const cookieBannerInner = document.getElementsByClassName('cookie-Banner')[0];
-        const cookieBannerRow = createElement('div', '', 'cookie-Banner--Row', [], '');
+            cookieBanner.append(cookieBannerWrapper);
 
-        const cookieBannerRow1 = createElement('div', '', 'cookie-Banner--Row--Column-1', [], '');
-        const cookieBannerLinks = '<div class="text--Links"><a href="' + metadata.links.dataprivacy.href + '" class="text--Links-Privacy">' + metadata.links.dataprivacy.label + '</a><a href="' + metadata.links.legalnotice.href + '" class="text--Links-Imprint">' + metadata.links.legalnotice.label + '</a></div>';
-        const cookieBannerRow2 = createElement('div', '', 'cookie-Banner--Row--Column-2', [], '<div class="text"><span class="text--Header">' + metadata.header + '</span><span class="text--P">' + metadata.text + '</span>' + cookieBannerLinks + '</div>');
-        const cookieBannerRow3 = createElement('div', '', 'cookie-Banner--Row--Column-3', [], '');
+            const cookieBannerInner = document.getElementsByClassName('cookie-Banner')[0];
+            const cookieBannerRow = createElement('div', '', 'cookie-Banner--Row', [], '');
 
-        cookieBannerRow3.append(cookieBannerButtonSettings);
-        cookieBannerRow3.append(cookieBannerButtonOK);
+            const cookieBannerRow1 = createElement('div', '', 'cookie-Banner--Row--Column-1', [], '');
+            const cookieBannerLinks = '<div class="text--Links"><a href="' + metadata.links.dataprivacy.href + '" class="text--Links-Privacy">' + metadata.links.dataprivacy.label + '</a><a href="' + metadata.links.legalnotice.href + '" class="text--Links-Imprint">' + metadata.links.legalnotice.label + '</a></div>';
+            const cookieBannerRow2 = createElement('div', '', 'cookie-Banner--Row--Column-2', [], '<div class="text"><span class="text--Header">' + metadata.header + '</span><span class="text--P">' + metadata.text + '</span>' + cookieBannerLinks + '</div>');
+            const cookieBannerRow3 = createElement('div', '', 'cookie-Banner--Row--Column-3', [], '');
 
-        cookieBannerRow1.innerHTML = cookieSvg;
+            cookieBannerRow3.append(cookieBannerButtonSettings);
+            cookieBannerRow3.append(cookieBannerButtonOK);
 
-        cookieBannerInner.append(cookieBannerRow);
-        cookieBannerRow.append(cookieBannerRow1);
-        cookieBannerRow.append(cookieBannerRow2);
-        cookieBannerRow.append(cookieBannerRow3);
+            cookieBannerRow1.innerHTML = cookieSvg;
 
-        cookieButtonEventListener();
-    }
+            cookieBannerInner.append(cookieBannerRow);
+            cookieBannerRow.append(cookieBannerRow1);
+            cookieBannerRow.append(cookieBannerRow2);
+            cookieBannerRow.append(cookieBannerRow3);
 
-    function createCookieSettings() {
-
-        const cookieGroupToggleContent = '<div class="cookie-Group--Toggle--Sprite">&nbsp;</div><div class="cookie-Group--Toggle--Switch">&nbsp;</div>';
-
-        const cookieSettingsWrapper = createElement('div', 'cookie_Settings', 'cookie-Settings--Wrapper', [], '');
-        cookieSettingsWrapper.append(createElement('div', '', 'cookie-Settings', [], '<div class="cookie-Settings--Header">' + metadata.additionalHeader + '</div><div id="cookie_Settings__Body" class="cookie-Settings--Body"></div><div class="cookie-Settings--Footer"></div>'));
-
-        const cookieSettingsFooter = cookieSettingsWrapper.getElementsByClassName('cookie-Settings--Footer')[0];
-
-        const cookieBannerButtonSettingsModified = cookieBannerButtonSettings;
-        cookieBannerButtonSettingsModified.setAttribute('id', 'cookie_Banner__Button__Settings__OK');
-        cookieBannerButtonSettingsModified.textContent = metadata.buttons.settings.additionalLabelText;
-
-        cookieSettingsFooter.append(cookieBannerButtonSettingsModified);
-        cookieSettingsFooter.append(cookieBannerButtonOK);
-
-        cookieBanner.append(cookieSettingsWrapper);
-
-        for (var group in metadata.groups) {
-
-            let cookieGroupToggle = createElement('button', 'cookie_Group__Toggle__' + group, 'cookie-Group--Toggle', [], cookieGroupToggleContent);
-            let cookieGroup = createElement('div', 'cookie_Group__' + group, 'cookie-Group', [], '<div class="cookie-Settings--Body--Title"><span>' + metadata.groups[group].label + '</span>' + cookieGroupToggle.outerHTML + '</div><div id="cookie_Settings__Body__Cookies__' + group + '" class="cookie-Settings--Body--Cookies"></div>');
-            document.getElementById('cookie_Settings__Body').append(cookieGroup);
-
-            for (var cookie in metadata.groups[group].cookies) {
-                let cookieGroupCookieRow = createElement('div', '', 'cookie-Group--Row', [], '<div class="cookie-Banner--Row--Column-1"><code>' + cookie + '</code></div><div class="cookie-Banner--Row--Column-2">' + metadata.groups[group].cookies[cookie].description + '</div><div class="cookie-Banner--Row--Column-3">' + metadata.groups[group].cookies[cookie].lifetime + '</div>');
-                document.getElementById('cookie_Settings__Body__Cookies__' + group).append(cookieGroupCookieRow);
-                document.getElementById('cookie_Group__Toggle__' + group).setAttribute('data-cookiegroup', group);
-            }
+            cookieButtonEventListener();
         }
 
-        document.getElementById('cookie_Group__Toggle__essential').classList.add('toggled');
+        function createCookieSettings() {
 
-        document.querySelectorAll('.cookie-Group--Toggle').forEach(toggleButton => {
-            toggleButton.addEventListener('click', function () {
-                toggleButton.classList.toggle('toggled');
-                toggleCookieGroups(cookies, toggleButton.dataset.cookiegroup);
+            const cookieGroupToggleContent = '<div class="cookie-Group--Toggle--Sprite">&nbsp;</div><div class="cookie-Group--Toggle--Switch">&nbsp;</div>';
+
+            const cookieSettingsWrapper = createElement('div', 'cookie_Settings', 'cookie-Settings--Wrapper', [], '');
+            cookieSettingsWrapper.append(createElement('div', '', 'cookie-Settings', [], '<div class="cookie-Settings--Header">' + metadata.additionalHeader + '</div><div id="cookie_Settings__Body" class="cookie-Settings--Body"></div><div class="cookie-Settings--Footer"></div>'));
+
+            const cookieSettingsFooter = cookieSettingsWrapper.getElementsByClassName('cookie-Settings--Footer')[0];
+
+            const cookieBannerButtonSettingsModified = cookieBannerButtonSettings;
+            cookieBannerButtonSettingsModified.setAttribute('id', 'cookie_Banner__Button__Settings__OK');
+            cookieBannerButtonSettingsModified.textContent = metadata.buttons.settings.additionalLabelText;
+
+            cookieSettingsFooter.append(cookieBannerButtonSettingsModified);
+            cookieSettingsFooter.append(cookieBannerButtonOK);
+
+            cookieBanner.append(cookieSettingsWrapper);
+
+            for (var group in metadata.groups) {
+
+                let cookieGroupToggle = createElement('button', 'cookie_Group__Toggle__' + group, 'cookie-Group--Toggle', [], cookieGroupToggleContent);
+                let cookieGroup = createElement('div', 'cookie_Group__' + group, 'cookie-Group', [], '<div class="cookie-Settings--Body--Title"><span>' + metadata.groups[group].label + '</span>' + cookieGroupToggle.outerHTML + '</div><div id="cookie_Settings__Body__Cookies__' + group + '" class="cookie-Settings--Body--Cookies"></div>');
+                document.getElementById('cookie_Settings__Body').append(cookieGroup);
+
+                for (var cookie in metadata.groups[group].cookies) {
+                    let cookieGroupCookieRow = createElement('div', '', 'cookie-Group--Row', [], '<div class="cookie-Banner--Row--Column-1"><code>' + cookie + '</code></div><div class="cookie-Banner--Row--Column-2">' + metadata.groups[group].cookies[cookie].description + '</div><div class="cookie-Banner--Row--Column-3">' + metadata.groups[group].cookies[cookie].lifetime + '</div>');
+                    document.getElementById('cookie_Settings__Body__Cookies__' + group).append(cookieGroupCookieRow);
+                    document.getElementById('cookie_Group__Toggle__' + group).setAttribute('data-cookiegroup', group);
+                }
+            }
+
+            document.getElementById('cookie_Group__Toggle__essential').classList.add('toggled');
+
+            document.querySelectorAll('.cookie-Group--Toggle').forEach(toggleButton => {
+                toggleButton.addEventListener('click', function () {
+                    toggleButton.classList.toggle('toggled');
+                    toggleCookieGroups(cookies, toggleButton.dataset.cookiegroup);
+                });
             });
-        });
 
-        document.getElementById('cookie_Banner__Button__Settings__OK').addEventListener('click', (e) => {
-            setCookie('_cs', cookies.join(','), nowPlusOneYear());
-            destroyCookieWindows();
-            createRevokeButton();
-            processCookieDependentResources();
-        });
+            document.getElementById('cookie_Banner__Button__Settings__OK').addEventListener('click', (e) => {
+                setCookie('_cs', cookies.join(','), nowPlusOneYear());
+                destroyCookieWindows();
+                createRevokeButton();
+                processCookieDependentResources();
+            });
+
+        }
+
+        let bannerCreation = setTimeout(function () {
+
+            createCookieBanner();
+            document.getElementById('cb').classList.add('show');
+            clearInterval(bannerCreation);
+
+            document.getElementById('cookie_Banner__Button__Settings').addEventListener('click', (e) => {
+                if(e.target.getAttribute('id') === 'cookie_Banner__Button__Settings') {
+                    document.getElementById('cookie_Banner').remove();
+                    createCookieSettings();
+                }
+            });
+
+        }, parseInt(metadata.settings.bannerDelayTime));
 
     }
-
-    let bannerCreation = setTimeout(function () {
-
-        createCookieBanner();
-        document.getElementById('cb').classList.add('show');
-        clearInterval(bannerCreation);
-
-        document.getElementById('cookie_Banner__Button__Settings').addEventListener('click', (e) => {
-            if(e.target.getAttribute('id') === 'cookie_Banner__Button__Settings') {
-                document.getElementById('cookie_Banner').remove();
-                createCookieSettings();
-            }
-        });
-
-    }, parseInt(metadata.settings.bannerDelayTime));
 
 }
 
