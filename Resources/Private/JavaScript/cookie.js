@@ -230,9 +230,11 @@ async function fetchCookieMetadataAsync(delayTime = 2000) {
 
 }
 
-if(!getCookie('_cs') || getCookie('_cs') == 'revoked') {
-    fetchCookieMetadataAsync();
-} else {
-    createRevokeButton();
-    processCookieDependentResources();
+if(document.getElementById('cb')) {
+    if(!getCookie('_cs') || getCookie('_cs') == 'revoked') {
+        fetchCookieMetadataAsync();
+    } else {
+        createRevokeButton();
+        processCookieDependentResources();
+    }
 }
