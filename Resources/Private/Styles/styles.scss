@@ -20,7 +20,7 @@ $cbRevokeButtonColor: rgba(0,0,0,0.6);
 $cbRevokeButtonSvgColor: #FFF;
 
 #cb { opacity:0; @include transition(0.2s);
-    .cookie-Banner--Wrapper, .cookie-Settings--Wrapper { position: fixed; width:100%; left:0; bottom:0; z-index:1; padding-left:1rem; padding-right:1rem;
+    .cookie-Banner--Wrapper, .cookie-Settings--Wrapper { position: fixed; width:100%; left:0; bottom:0; z-index:9998; padding-left:1rem; padding-right:1rem;
         .cookie-Banner, .cookie-Settings { width:100%; max-width:1200px; margin:0 auto; display:block; background:$cbBackground; padding:1.2rem; margin-bottom:2rem;
             .cookie-Banner--Row { display:flex; width:100%; }
             .cookie-Banner--Row--Column { display:flex; flex-direction: column; padding:1rem; align-self: center; }
@@ -58,7 +58,7 @@ $cbRevokeButtonSvgColor: #FFF;
             }
         }
     }
-    .cookie-Settings--Wrapper { z-index:2; bottom:auto; top:0; height:100%;
+    .cookie-Settings--Wrapper { z-index:9999; bottom:auto; top:0; height:100%;
         .cookie-Settings { max-width:860px; height:calc(100% - 6rem); margin-top:3rem; display:flex; flex-direction: column; justify-content: space-between;
             .cookie-Settings--Header { color:$cbSettingsHeaderTextColor; font-size:1.6rem; text-align:center; margin-bottom:1.3rem; }
             .cookie-Settings--Body { background:$cbSettingsBodyBackgroundColor; height:100%; padding:1.4rem; overflow:scroll;
