@@ -89,10 +89,10 @@ function setCookie(cookie, value, expires) {
 
 function getCookie(cookiename) {
     if (typeof(cookiename) == 'string' && cookiename != '') {
-        const cookies = document.cookie.split(';');
-        for (i = 0; i < cookies.length; i++) {
-            if (cookies[i].trim().startsWith(cookiename)) {
-                return cookies[i].split('=')[1];
+        const cookiesGetCookies = document.cookie.split(';');
+        for (i = 0; i < cookiesGetCookies.length; i++) {
+            if (cookiesGetCookies[i].trim().startsWith(cookiename)) {
+                return cookiesGetCookies[i].split('=')[1];
             }
         }
     }
