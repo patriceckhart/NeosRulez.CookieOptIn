@@ -3,7 +3,8 @@
     "text": "We use cookies on our website. Some of them are essential, while others help us to improve this website and your experience.",
     "additionalHeader": "Cookie Settings",
     "settings": {
-        "bannerDelayTime": "{bannerDelayTime}"
+        "bannerDelayTime": "{bannerDelayTime}",
+        "showDeclineButton": "{showDeclineButton}"
     },
     "buttons": {
         "settings": {
@@ -12,6 +13,9 @@
         },
         "confirm": {
             "label": "OK - accept all"
+        },
+        "decline": {
+            "label": "Reject all"
         }
     },
     "links": {

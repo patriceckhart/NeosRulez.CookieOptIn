@@ -16,3 +16,4 @@ NeosRulez:
   CookieOptIn:
     metadataPathAndFilename: 'resource://NeosRulez.CookieOptIn/Private/Metadata/{lang}.cookie.json'
     bannerDelayTime: 2000
+    showDeclineButton: true

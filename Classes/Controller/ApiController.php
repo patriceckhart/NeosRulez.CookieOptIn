@@ -86,6 +86,11 @@ class ApiController extends ActionController
         if(array_key_exists('bannerDelayTime', $this->settings)) {
             $json = str_replace('{bannerDelayTime}', $this->settings['bannerDelayTime'], $json);
         }
+        if(array_key_exists('showDeclineButton', $this->settings)) {
+            $json = str_replace('{showDeclineButton}', $this->settings['showDeclineButton'], $json);
+        } else {
+            $json = str_replace('{showDeclineButton}', '0', $json);
+        }
         return $json;
     }
 

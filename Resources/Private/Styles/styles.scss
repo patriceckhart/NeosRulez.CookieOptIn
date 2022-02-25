@@ -44,7 +44,7 @@ $cbRevokeButtonSvgColor: #FFF;
             }
             .cookie-Banner--Row--Column-3 { width:40%; }
             .cookie-Banner--Button { height:50px; font-weight:bold; color:#FFF; border:0; outline:0; padding:0.5rem; margin-top:0.5rem; margin-bottom:0.5rem; @include transition(0.2s); }
-            #cookie_Banner__Button__Settings, #cookie_Banner__Button__Settings__OK { background:$cbButtonSettingsColor;
+            #cookie_Banner__Button__Settings, #cookie_Banner__Button__Settings__OK, #cookie_Banner__Button__DECLINE { background:$cbButtonSettingsColor;
                 &:hover { background:$cbButtonSettingsHoverColor; }
             }
             #cookie_Banner__Button__OK { background:$cbButtonOKColor;
