@@ -84,7 +84,7 @@ function nowPlusOneYear() {
 }
 
 function setCookie(cookie, value, expires) {
-    document.cookie = cookie + '=' + value + ';expires=' + expires;
+    document.cookie = cookie + '=' + value + ';path=/;expires=' + expires;
 }
 
 function getCookie(cookiename) {
