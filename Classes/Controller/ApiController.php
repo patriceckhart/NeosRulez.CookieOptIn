@@ -5,6 +5,7 @@ namespace NeosRulez\CookieOptIn\Controller;
  * This file is part of the NeosRulez.CookieOptIn package.
  */
 
+use Neos\Cache\Frontend\VariableFrontend;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Eel\FlowQuery\FlowQuery;
@@ -14,6 +15,12 @@ use Neos\Flow\Mvc\View\JsonView;
 
 class ApiController extends ActionController
 {
+
+    /**
+     * @var VariableFrontend
+     * @Flow\Inject
+     */
+    protected $metadataCache;
 
     /**
      * @var string
@@ -53,7 +60,13 @@ class ApiController extends ActionController
     {
         $this->response->setComponentParameter(SetHeaderComponent::class,'Access-Control-Allow-Origin', '*');
         $this->response->setStatusCode(200);
-        $this->view->assign('value', $this->loadMetadata($language));
+        if ($this->metadataCache->has('cookie_' . $language)) {
+            $metadata = $this->metadataCache->get('cookie_' . $language);
+        } else {
+            $metadata = $this->loadMetadata($language);
+            $this->metadataCache->set('cookie_' . $language, $metadata);
+        }
+        $this->view->assign('value', $metadata);
     }
 
     /**
